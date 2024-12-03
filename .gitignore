@@ -1,0 +1,10 @@
+# ide's
+.idea/
+.vscode/
+
+# python
+venv/
+
+# misc
+.DS_Store
+
