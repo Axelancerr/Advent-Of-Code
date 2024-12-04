@@ -1,34 +1,34 @@
 import itertools
 
+from common import input_lines
+
+
+reports = [[int(level) for level in report] for report in [line.split() for line in input_lines()]]
+check = lambda report: (
+    any([
+        sorted(report) == report,
+        sorted(report) == report[::-1]
+    ])
+    and
+    all(map(
+        lambda i: (1 <= abs(report[i] - report[i + 1]) <= 3),
+        range(len(report) - 1)
+    ))
+)
 
 def part_one():
-    print(
-        len(
-            [
-                x for x in [[*map(int, line)] for line in map(str.split, open("input.txt").readlines())]
-                if ((sorted(x) == x) or (sorted(x, reverse=True) == x))
-                   and all([(1 <= abs(x[i] - x[i + 1]) <= 3) for i in range(len(x) - 1)])
-            ]
-        )
-    )
-
+    print(len([*filter(check, reports)]))
 
 def part_two():
-    lines = [[*map(int, line)] for line in map(str.split, open("input.txt").readlines())]
-    correct = 0
-    for line in lines:
-        combos = map(list, itertools.combinations(line, len(line) - 1))
-        if any(
-            [
-                x for x in map(list, [*combos])
-                if ((sorted(x) == x) or (sorted(x, reverse=True) == x))
-                   and all([(1 <= abs(x[i] - x[i + 1]) <= 3) for i in range(len(x) - 1)])
-            ]
-        ):
-            correct += 1
-            continue
-    print(correct)
-
+    print(len(
+        [*filter(
+            lambda report: [*filter(
+                check,
+                map(list, itertools.combinations(report, len(report) - 1))
+            )],
+            reports
+        )]
+    ))
 
 part_one()
 part_two()

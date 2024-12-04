@@ -3,7 +3,7 @@
 .vscode/
 
 # python
-venv/
+.venv/
 
 # misc
 .DS_Store
