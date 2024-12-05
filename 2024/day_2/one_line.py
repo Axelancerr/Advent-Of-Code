@@ -1,6 +1,6 @@
 import itertools
 
-from common import input_lines
+from common import input_lines, print_results
 
 
 reports = [[int(level) for level in report] for report in [line.split() for line in input_lines()]]
@@ -17,10 +17,10 @@ check = lambda report: (
 )
 
 def part_one():
-    print(len([*filter(check, reports)]))
+    return len([*filter(check, reports)])
 
 def part_two():
-    print(len(
+    return len(
         [*filter(
             lambda report: [*filter(
                 check,
@@ -28,7 +28,6 @@ def part_two():
             )],
             reports
         )]
-    ))
+    )
 
-part_one()
-part_two()
+print_results(part_one, part_two)
