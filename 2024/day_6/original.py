@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from common import input_lines, time_results
+from common import print_results, string_grid
 
 
 dir_offsets = {
@@ -17,7 +17,7 @@ dir_mapping = {
 }
 
 def common():
-    grid = [[*line.strip()] for line in input_lines()]
+    grid = string_grid()
     row_count, col_count = len(grid), len(grid[0])
     row_with_guard = [row for row in grid if "^" in row][0]
     guard_row, guard_col = grid.index(row_with_guard), row_with_guard.index("^")
@@ -42,7 +42,7 @@ def part_one():
     return sum(row.count("X") for row in common())
 
 def part_two():
-    _grid = [[*line.strip()] for line in input_lines()]
+    _grid = string_grid()
     row_count, col_count = len(_grid), len(_grid[0])
 
     def grids():
@@ -83,4 +83,4 @@ def part_two():
 
     return count
 
-time_results(part_one, part_two, count=1)
+print_results(part_one, part_two)

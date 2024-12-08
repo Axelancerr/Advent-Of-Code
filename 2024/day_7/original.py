@@ -1,7 +1,7 @@
 import itertools
 import operator
 
-from common import input_lines, print_results
+from common import lines, print_results
 
 
 def common(operators):
@@ -9,7 +9,7 @@ def common(operators):
         lambda x: [int(x[0]), [*map(int, x[1].strip().split(" "))]],
         map(
             lambda line: line.strip().split(":"),
-            input_lines()
+            lines()
         )
     )
     total = 0

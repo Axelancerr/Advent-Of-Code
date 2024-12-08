@@ -1,10 +1,10 @@
 import collections
 
-from common import input_line, print_results
+from common import line, print_results
 
 
 def part_1():
-    rules_and_updates = input_line().split("\n\n")
+    rules_and_updates = line().split("\n\n")
 
     rules = collections.defaultdict(list)
     for rule in rules_and_updates[0].split("\n"):
@@ -31,7 +31,7 @@ def part_1():
     return total
 
 def part_2():
-    rules_and_updates = input_line().split("\n\n")
+    rules_and_updates = line().split("\n\n")
 
     rules = collections.defaultdict(set)
     for rule in rules_and_updates[0].split("\n"):

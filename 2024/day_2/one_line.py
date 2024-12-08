@@ -1,9 +1,8 @@
 import itertools
 
-from common import input_lines, print_results
+from common import int_grid, print_results
 
 
-reports = [[int(level) for level in report] for report in [line.split() for line in input_lines()]]
 check = lambda report: (
     any([
         sorted(report) == report,
@@ -17,17 +16,15 @@ check = lambda report: (
 )
 
 def part_one():
-    return len([*filter(check, reports)])
+    return len([*filter(check, int_grid())])
 
 def part_two():
-    return len(
-        [*filter(
-            lambda report: [*filter(
-                check,
-                map(list, itertools.combinations(report, len(report) - 1))
-            )],
-            reports
-        )]
-    )
+    return len([*filter(
+        lambda report: [*filter(
+            check,
+            map(list, itertools.combinations(report, len(report) - 1))
+        )],
+        int_grid()
+    )])
 
 print_results(part_one, part_two)

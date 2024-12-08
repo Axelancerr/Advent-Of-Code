@@ -1,9 +1,9 @@
 import collections
 
-from common import input_lines, print_results
+from common import lines, print_results
 
 
-locations = [*map(str.split, input_lines())]
+locations = [*map(str.split, lines())]
 lefts = [*map(lambda x: int(x[0]), locations)]
 rights = [*map(lambda x: int(x[1]), locations)]
 

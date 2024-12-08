@@ -1,6 +1,6 @@
 import re
 
-from common import input_line, print_results
+from common import line, print_results
 
 
 def part_one():
@@ -8,7 +8,7 @@ def part_one():
         lambda equation: int.__mul__(*equation),
         map(
             lambda match: map(int, match),
-            re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", input_line())
+            re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", line())
         )
     ))
 
@@ -25,7 +25,7 @@ def part_two():
                     ) if match[0] != ""
                     else int(match[1]) * int(match[2]) if globals().get("enabled") is True
                     else None,
-                re.findall(r"(do\(\)|don't\(\))|mul\((\d{1,3}),(\d{1,3})\)", input_line())
+                re.findall(r"(do\(\)|don't\(\))|mul\((\d{1,3}),(\d{1,3})\)", line())
             )
         ))
     ][1]

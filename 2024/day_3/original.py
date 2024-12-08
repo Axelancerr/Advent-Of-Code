@@ -1,17 +1,17 @@
 import re
 
-from common import input_lines, print_results
+from common import lines, print_results
 
 
 def part_one():
     regex = re.compile(r"mul\((\d{1,3},\d{1,3})\)")
-    matches = regex.findall("".join(input_lines()))
+    matches = regex.findall("".join(lines()))
     nums = [[int(x) for x in y.split(",")] for y in matches]
     return sum([int.__mul__(*x) for x in nums])
 
 def part_two():
     regex = re.compile(r"(do\(\))|(don't\(\))|mul\((\d{1,3}),(\d{1,3})\)")
-    matches = regex.findall("".join(input_lines()))
+    matches = regex.findall("".join(lines()))
     total = 0
     enabled = True
     for match in matches:

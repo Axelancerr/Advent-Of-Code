@@ -1,13 +1,13 @@
 import collections
 from typing import Iterator
 
-from common import input_line, time_results
+from common import line, print_results
 
 
 rules = collections.defaultdict(set)
 updates = []
 
-for line in input_line().split():
+for line in line().split():
     if "|" in line:
         before, after = line.split("|")
         rules[before].add(after)
@@ -67,4 +67,4 @@ def part_2():
         ][1])
     ))
 
-time_results(part_1, part_2)
+print_results(part_1, part_2)

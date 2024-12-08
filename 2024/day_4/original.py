@@ -1,11 +1,11 @@
 from numpy.lib._stride_tricks_impl import sliding_window_view
 
-from common import input_lines, print_results
+from common import is_pos_in_grid, print_results, string_grid
 
 
 def part_1():
     word = "XMAS"
-    grid = [row.strip("\n") for row in input_lines()]
+    grid = string_grid()
     rows = len(grid)
     columns = len(grid[0])
     offsets = [
@@ -15,12 +15,11 @@ def part_1():
         [-1, 1], [-1, -1]
     ]
     count = 0
-    valid_position = lambda r, c: 0 <= r < rows and 0 <= c < columns
     for row in range(rows):
         for column in range(columns):
             for row_offset, column_offset in offsets:
                 if all([
-                    valid_position(row + i * row_offset, column + i * column_offset)
+                    is_pos_in_grid(row + i * row_offset, column + i * column_offset, rows=rows, cols=columns)
                     and grid[row + i * row_offset][column + i * column_offset] == word[i]
                     for i in range(len(word))
                 ]):
@@ -28,7 +27,7 @@ def part_1():
     return count
 
 def part_2():
-    grid = [[line for line in row.strip("\n")] for row in input_lines()]
+    grid = string_grid()
     sub_grids = sliding_window_view(grid, (3, 3)).reshape(-1, 3, 3)
     valid_grids = [
         [["M", "", "M"],
